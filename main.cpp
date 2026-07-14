@@ -123,9 +123,10 @@ int main() {
   if (accept_sale == "y") {
     total_cost *= 0.9;
     item_cost *= 0.9;
-  }
+  } // Sets the total and item costs to 90% the original value
   
   std::cout.precision(4);
+  // Limits the number of significant figures output by the program
   
   // DO NOT EDIT BELOW THIS LINE!
 
