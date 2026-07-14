@@ -41,7 +41,7 @@ int main() {
   cin >> quantity;
 
   // OFFER USER AN OPTIONAL DISCOUNT
-  cout << "Congratulations! You've been selected for a special promotion! Would you like to add one more unit to your cart and receive a 10% discount overall (y/n)?";
+  cout << "Congratulations! You've been selected for a special promotion! Would you like to add one more unit to your cart and receive a 10% discount overall (y/n)? ";
   cin >> accept_sale;
 
   // DO NOT EDIT ABOVE THIS LINE!
@@ -53,34 +53,80 @@ int main() {
   // TODO: INPUT VALIDATION
   // Print error statements if any of the inputs or combinations of inputs are invalid!
 
-  if (quantity <= 0) {
-    cout << "Invalid quantity entered! Quantity must be greater than zero. Aborting." << endl; // (this is an example of how I'd like you to print error messages for this lab)
+  if ((product_type != "banana") && (product_type != "apple") && (product_type != "watermelon")) {
+    cout << "Invalid product type entered! Please re-check and try again." << endl;
     return 1; // abort
   }
+  // Checks to see if only one of the three 
 
+  if ((unit_type != "bunch") && (unit_type != "bag") && (unit_type != "single")) {
+    cout << "Invalid unit type entered! Please enter a valid listed type." << endl;
+    return 1; // abort
+  }
+  
   if ((product_type == "banana") && !(unit_type == "single" || unit_type == "bunch")) {
     cout << "Invalid unit type entered! For bananas, the unit type must be 'single' or 'bunch'." << endl;
     return 1; // abort
   }
-  //...
+  //Bananas can only be single or a bunch. This checks if the unit type is correct
 
+  if ((product_type == "apple") && !(unit_type == "single" || unit_type == "bag")) {
+    cout << "Invalid unit type entered! For apples, the unit type must be 'single' or 'bag'." << endl;
+    return 1; // abort
+  }
+  //Apples can only be single or a bag. This checks if the unit type is correct
+
+  if ((product_type == "watermelon") && !(unit_type == "single")) {
+    cout << "Invalid unit type entered! For watermelons, the unit type must be 'single'." << endl;
+    return 1; // abort
+  }
+  //Watermelons can only be bought single. This checks if the unit type is correct
+
+  if (quantity <= 0) {
+    cout << "Invalid quantity entered! Quantity must be greater than zero. Aborting." << endl; // (this is an example of how I'd like you to print error messages for this lab)
+    return 1; // abort
+  }
+  //Quantity has to be a positive integer. Checks to see if a non-negative number is entered
+  
   // TODO: COMPUTE THE COST OF THIS PURCHASE
   if ((product_type == "banana") && (unit_type == "single")) {
-    total_cost = quantity * (price_banana / 100.); // total cost in dollars
-    //...
+    item_cost = price_banana / 100.;
+    total_cost = quantity * item_cost; // total cost in dollars
+    //Item cost in dollars for a single banana, multiplied by quantity is the total cost
   }
-  if (product_type == "banana") && (unit_type == "bunch")) {
-    total_cost = quantity *   //...
-    //...
+  if ((product_type == "banana") && (unit_type == "bunch")) {
+    item_cost = price_bunch_bananas/7;
+    total_cost = quantity * price_bunch_bananas;  //...
+    //Cost in dollars for a banana bunch, multiplied by quantity is the total cost
   }
-  //...
-  //...
 
+  if ((product_type == "apple") && (unit_type == "single")) {
+    item_cost = price_apple / 100.;
+    total_cost = quantity * item_cost; // total cost in dollars
+    //Item cost in dollars for a single apple, multiplied by quantity is the total cost
+  }
+  if ((product_type == "apple") && (unit_type == "bag")) {
+    item_cost = price_bag_apples/8;
+    total_cost = quantity * price_bag_apples;  //...
+    //Cost in dollars for a bag of apples, multiplied by quantity of bags is the total cost
+  }
+
+  if ((product_type == "watermelon") && (unit_type == "single")) {
+    item_cost = price_watermelon / 100.;
+    total_cost = quantity * item_cost; // total cost in dollars
+    //Item cost in dollars for a single watermelon, multiplied by quantity is the total cost
+  }
 
   // TODO: APPLY THE OPTIONAL DISCOUNT TO FINAL TOTAL COST
-  //...
-
-      
+  std::cout << "Accept Sale " << accept_sale << std::endl;
+  
+  if (accept_sale == "y") {
+    total_cost *= 0.9;
+    item_cost *= 0.9;
+  }
+  
+  std::cout.precision(4);
+  
   // DO NOT EDIT BELOW THIS LINE!
 
   // TELL USER THEIR FINAL TOTAL COST, AND COST PER FRUIT ITEM
